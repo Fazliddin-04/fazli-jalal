@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'Code-Squared';
+  src:
+    /* Super Modern Browsers */ url('./CodeSquaredRegular-AYRg.woff')
+      format('woff'),
+    /* Pretty Modern Browsers */ url('./CodeSquaredRegular-AYRg.ttf')
+      format('truetype');
+}
