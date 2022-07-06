@@ -48,7 +48,7 @@ function Navbar() {
         </a>
       </div>
       <div className="logoDiv">
-        <img src={logo} alt="logo" width={165} />
+        <img src={logo} alt="" />
       </div>
       <div className="navbar-list">
         <a href="#press" className="navbar-list__link">

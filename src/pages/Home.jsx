@@ -126,22 +126,22 @@ function Home() {
     const animContact1 = gsap.fromTo(
       contact1Ref.current,
       { scale: 0, rotate: 100 },
-      { duration: 1, scale: 1.8, rotate: 0 }
+      { duration: 1, scale: 1.8, rotate: 0, ease: 'circ.out' }
     )
     const animContact2 = gsap.fromTo(
       contact2Ref.current,
       { scale: 0, rotate: 100 },
-      { delay: 0.1, duration: 1, scale: 1.8, rotate: 0 }
+      { delay: 0.1, duration: 1, scale: 1.8, rotate: 0, ease: 'circ.out' }
     )
     const animContact3 = gsap.fromTo(
       contact3Ref.current,
       { scale: 0, rotate: 100 },
-      { delay: 0.2, duration: 1, scale: 1.5, rotate: 0 }
+      { delay: 0.2, duration: 1, scale: 1.5, rotate: 0, ease: 'circ.out' }
     )
     const animContact4 = gsap.fromTo(
       contact4Ref.current,
       { scale: 0, rotate: 100 },
-      { delay: 0.3, duration: 1, scale: 1.4, rotate: 0 }
+      { delay: 0.3, duration: 1, scale: 1.4, rotate: 0, ease: 'circ.out' }
     )
     ScrollTrigger.create({
       trigger: worksTitleRef.current,
