@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { TextPlugin } from 'gsap/TextPlugin'
-import logo from '../assets/img/JF_Logo-removebg-preview.png'
+import logo from '../assets/img/JF_Logo-removebg-preview.svg'
 gsap.registerPlugin(TextPlugin)
 
 function Navbar() {
@@ -15,25 +15,25 @@ function Navbar() {
       duration: 1.6,
       text: '//01. < Home />',
       ease: 'none',
-      delay: 0.6,
+      // delay: 0.6,
     })
     gsap.to(navbarLink2.current, {
       duration: 1.6,
       text: `//02. < Portfolio />`,
       ease: 'none',
-      delay: 0.6,
+      // delay: 0.6,
     })
     gsap.to(navbarLink3.current, {
       duration: 1.6,
       text: '//03. < Press />',
       ease: 'none',
-      delay: 0.6,
+      // delay: 0.6,
     })
     gsap.to(navbarLink4.current, {
       duration: 1.6,
       text: '//04. < Contact />',
       ease: 'none',
-      delay: 0.6,
+      // delay: 0.6,
     })
   }, [navbarLink1, navbarLink2, navbarLink3, navbarLink4])
 

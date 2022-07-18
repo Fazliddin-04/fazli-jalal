@@ -55,6 +55,14 @@ a {
   color: $primary;
 }
 
+.randomChars {
+  &::after {
+    content: '';
+    opacity: 0.5;
+    animation: randomChars 1.5s linear forwards;
+  }
+}
+
 @mixin title {
   font-size: clamp(1rem, 1rem + 7vw, 6rem);
   font-family: 'Code-Squared';
@@ -67,22 +75,25 @@ h1 {
   font-size: clamp(1rem, 1rem + 6vw, 10rem);
   margin: 4rem;
   margin-left: 5.5rem;
+  color: $white;
   position: relative;
-  color: $black;
   span {
     display: inline-block;
     position: relative;
     overflow: hidden;
+    animation: comefromtop 2.5s ease forwards;
+    z-index: -1;
     &::after,
     &::before {
-      content: attr(data-text);
-      font-family: 'Code-Squared';
-      font-size: clamp(1rem, 1rem + 6vw, 10rem);
+      content: '';
+      width: 100%;
+      height: 100%;
       position: absolute;
       top: 0;
       left: 0;
-      color: $white;
-      animation: comefromtop 2s ease 100ms forwards;
+      background-color: $black;
+      z-index: 1;
+      animation: openY 2.5s ease forwards;
     }
   }
   &::after,
@@ -93,6 +104,7 @@ h1 {
     font-size: clamp(1rem, 0.5rem + 1vw, 2rem);
     opacity: 0.7;
     position: absolute;
+    z-index: 1;
   }
   &::before {
     top: -20px;
@@ -100,7 +112,7 @@ h1 {
   }
   &::after {
     content: '</h1>';
-    bottom: -20px;
+    bottom: 0px;
     left: -30px;
   }
 }
@@ -209,21 +221,17 @@ section {
 
 .logoDiv {
   img {
-    width: clamp(5rem, 5rem + 4vw, 12rem);
+    width: clamp(3rem, 3rem + 3vw, 10rem);
+    transform: translate(-50%, 20%);
   }
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
   @media screen and (min-width: 640px) {
-    position: static;
-    transform: translateX(0%);
   }
   @media screen and (min-width: 768px) {
-    transform: translateX(0%);
   }
   @media screen and (min-width: 1024px) {
-    transform: translateX(0%) translateY(0%);
   }
 }
 
@@ -237,6 +245,8 @@ section {
     flex-direction: column;
     flex: 1;
     gap: 15px;
+    opacity: 0;
+    animation: fadeIn 0.5s linear forwards;
     &:last-of-type {
       align-items: flex-end;
     }
@@ -260,7 +270,7 @@ section {
       &::after {
         content: '';
         opacity: 0.5;
-        animation: randomChars 1.5s linear 600ms forwards;
+        animation: randomChars 1.5s linear forwards;
       }
       &:hover {
         padding: 10px 20px;
@@ -295,6 +305,8 @@ section {
   flex-wrap: wrap;
   gap: 20px;
   transform: translateY(-50px);
+  opacity: 0;
+  animation: fadeIn 0.5s linear forwards;
   @media screen and (min-width: 640px) {
     flex-wrap: nowrap;
     gap: 0px;
@@ -605,34 +617,6 @@ section {
   }
 }
 
-#starter {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  width: 100%;
-  height: 100vh;
-  background: url('./assets/img/vision2.png');
-  background-size: 100%;
-  transition: 600ms linear;
-  @media screen {
-    animation: glitch 0.3s linear infinite, gotoleft 1s ease-out forwards;
-  }
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('./assets/img/vision2.png');
-    background-size: 100%;
-    opacity: 0.5;
-    mix-blend-mode: hard-light;
-    animation: glitch 0.1s linear infinite;
-  }
-}
-
 .press-link {
   background-color: black;
   padding-top: 20px;
@@ -697,6 +681,7 @@ section {
     position: relative;
     height: 70vh;
     min-height: 590px;
+    overflow: hidden;
   }
   &-link {
     position: absolute;
@@ -776,6 +761,43 @@ section {
     }
   }
 }
+
+.svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-width: 25vw;
+  transform: translate(-50%, -50%);
+}
+
+.svg .path {
+  $dasharray: attr(stroke-dasharray);
+  $dashoffset: attr(stroke-dashoffset);
+  stroke-dasharray: $dasharray;
+  stroke-dashoffset: $dashoffset;
+  animation: dash 3s linear forwards;
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: $dashoffset;
+    }
+    99% {
+      opacity: 1;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 0;
+    }
+  }
+}
+
+.logoImg {
+  opacity: 0;
+  animation: fadeIn 0.5s 3s linear forwards;
+  .svg {
+    animation: loaderEnd 1s 3.5s ease forwards;
+  }
+}
+
 @keyframes pulse {
   0% {
     scale: 1;
@@ -806,12 +828,48 @@ section {
   }
 }
 
+@keyframes loaderEnd {
+  0% {
+    top: 50%;
+    width: 25vw;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 0;
+    transform: translate(-50%, 20%);
+    width: clamp(3rem, 3rem + 3vw, 10rem);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes comefromtop {
   from {
-    transform: translateY(-60%);
+    transform: translateY(-40%);
   }
   to {
     transform: translateY(0%);
+  }
+}
+
+@keyframes openY {
+  0% {
+    height: 100%;
+  }
+  99% {
+    z-index: 1;
+  }
+  100% {
+    height: 0%;
+    transform: translateY(0%);
+    z-index: -1;
   }
 }
 

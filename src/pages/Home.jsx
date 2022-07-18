@@ -29,6 +29,8 @@ function Home() {
   const slideContainer = useRef()
   const paginationRef = useRef()
 
+
+
   useEffect(() => {
     setSlides(slideContainer.current.querySelectorAll('.slide'))
   }, [])
@@ -71,16 +73,15 @@ function Home() {
       duration: 1,
       text: 'This is',
       ease: 'none',
-      delay: 0.6,
+      // delay: 0.6,
     })
     gsap.to(professionRef.current, {
-      duration: 1,
+      duration: 1.5,
       text: 'Entreprenuer and developer',
       ease: 'none',
-      delay: 0.6,
     })
     gsap.to(downloadRef.current, {
-      duration: 1,
+      duration: 1.5,
       text: '< Download CV />',
       ease: 'none',
       delay: 0.6,
@@ -241,18 +242,25 @@ function Home() {
     }
   }
 
+
+
   return (
     <>
       <div className="container">
-        <div id="starter"></div>
         <section className="intro" id="home">
           <div>
-            <p className="text-primary" ref={thisIsRef}></p>
+            <p className="text-primary">
+              <span ref={thisIsRef}></span>
+              <span className="randomChars"></span>
+            </p>
             <h1>
-              <span data-text="Fazli">Fazli</span>
-              <br /> <span data-text="Jalal">Jalal</span>
+              <span>Fazli</span>
+              <br /> <span>Jalal</span>
             </h1>
-            <p className="text-primary" ref={professionRef}></p>
+            <p className="text-primary">
+              <span ref={professionRef}></span>
+              <span className="randomChars"></span>
+            </p>
           </div>
           <div>
             <a
@@ -263,7 +271,7 @@ function Home() {
             >
               <span>
                 <span>
-                  <span>{'<Download />'}</span>
+                  <span ref={downloadRef}></span>
                 </span>
               </span>
             </a>
