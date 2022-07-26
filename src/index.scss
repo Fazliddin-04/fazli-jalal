@@ -1,5 +1,3 @@
-@import './assets/font/fonts.css';
-
 $white: #f3f3f4;
 $gray: #a6a9aa;
 $black: #020203;
@@ -65,7 +63,7 @@ a {
 
 @mixin title {
   font-size: clamp(1rem, 1rem + 7vw, 6rem);
-  font-family: 'Code-Squared';
+  font-family: 'Code-Squared', 'Courier New', Courier, monospace;
   width: fit-content;
   margin: auto;
 }
@@ -112,7 +110,7 @@ h1 {
   }
   &::after {
     content: '</h1>';
-    bottom: 0px;
+    bottom: -10px;
     left: -30px;
   }
 }
@@ -220,19 +218,32 @@ section {
 }
 
 .logoDiv {
-  img {
+  .svg {
     width: clamp(3rem, 3rem + 3vw, 10rem);
     transform: translate(-50%, 20%);
+    path {
+      transition: 300ms;
+      &:nth-child(1) {
+        stroke: #18c84a;
+      }
+      stroke-dashoffset: 0;
+      animation: stroke-width_anim 3s linear forwards;
+      @keyframes stroke-width_anim {
+        0% {
+          stroke-width: 50;
+        }
+        99% {
+          opacity: 1;
+        }
+        100% {
+          stroke-width: 100;
+        }
+      }
+    }
   }
   position: absolute;
   top: 0;
   left: 50%;
-  @media screen and (min-width: 640px) {
-  }
-  @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1024px) {
-  }
 }
 
 .navbar {
@@ -273,7 +284,7 @@ section {
         animation: randomChars 1.5s linear forwards;
       }
       &:hover {
-        padding: 10px 20px;
+        padding: 10px;
         color: $primary;
         &::before {
           opacity: 1;
@@ -298,7 +309,8 @@ section {
 }
 
 .intro {
-  padding-top: 50px;
+  margin-top: 40px;
+  padding-top: 10px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -761,41 +773,39 @@ section {
     }
   }
 }
-
 .svg {
   position: absolute;
   left: 50%;
   top: 50%;
   max-width: 25vw;
   transform: translate(-50%, -50%);
-}
-
-.svg .path {
-  $dasharray: attr(stroke-dasharray);
-  $dashoffset: attr(stroke-dashoffset);
-  stroke-dasharray: $dasharray;
-  stroke-dashoffset: $dashoffset;
-  animation: dash 3s linear forwards;
-  @keyframes dash {
-    0% {
+  .loading & {
+    animation: loaderEnd 1s 3.5s ease forwards;
+    .path {
+      $dasharray: attr(stroke-dasharray);
+      $dashoffset: attr(stroke-dashoffset);
+      stroke-dasharray: $dasharray;
       stroke-dashoffset: $dashoffset;
-    }
-    99% {
-      opacity: 1;
-    }
-    100% {
-      stroke-dashoffset: 0;
-      opacity: 0;
+      animation: dash 3s linear forwards;
+      @keyframes dash {
+        0% {
+          stroke-dashoffset: $dashoffset;
+        }
+        99% {
+          opacity: 1;
+        }
+        100% {
+          stroke-dashoffset: 0;
+          // opacity: 0;
+        }
+      }
     }
   }
 }
 
 .logoImg {
   opacity: 0;
-  animation: fadeIn 0.5s 3s linear forwards;
-  .svg {
-    animation: loaderEnd 1s 3.5s ease forwards;
-  }
+  // animation: fadeIn 0.5s 3s linear forwards;
 }
 
 @keyframes pulse {
