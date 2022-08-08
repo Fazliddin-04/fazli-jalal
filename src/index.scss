@@ -601,17 +601,27 @@ section {
     transform: scale(1.2);
     opacity: 1;
   }
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
   @media screen and (min-width: 640px) {
     width: 75px;
     height: 75px;
-    font-size: 2rem;
     bottom: 20%;
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
   }
   @media screen and (min-width: 1024px) {
     width: 100px;
     height: 100px;
-    font-size: 3rem;
     bottom: 0%;
+    svg {
+      width: 3rem;
+      height: 3rem;
+    }
   }
 }
 
@@ -654,8 +664,9 @@ section {
     color: $black;
   }
   svg {
-    color: $white;
-    font-size: clamp(1rem, 1rem + 4vw, 4rem);
+    fill: $white;
+    width: clamp(1rem, 1rem + 4vw, 4rem);
+    height: clamp(1rem, 1rem + 4vw, 4rem);
     transform: translateX(-50%);
     transition: 1s;
   }
@@ -676,7 +687,7 @@ section {
       font-size: clamp(1rem, 1rem + 2.5vw, 3rem);
     }
     svg {
-      color: $black;
+      fill: $black;
       transform: translateX(0%);
     }
     &::after {
@@ -773,6 +784,7 @@ section {
     }
   }
 }
+
 .svg {
   position: absolute;
   left: 50%;
@@ -780,13 +792,13 @@ section {
   max-width: 25vw;
   transform: translate(-50%, -50%);
   .loading & {
-    animation: loaderEnd 1s 3.5s ease forwards;
+    animation: loaderEnd 0.8s 1.5s ease forwards;
     .path {
       $dasharray: attr(stroke-dasharray);
       $dashoffset: attr(stroke-dashoffset);
       stroke-dasharray: $dasharray;
       stroke-dashoffset: $dashoffset;
-      animation: dash 3s linear forwards;
+      animation: dash 1.5s ease forwards;
       @keyframes dash {
         0% {
           stroke-dashoffset: $dashoffset;
@@ -801,11 +813,6 @@ section {
       }
     }
   }
-}
-
-.logoImg {
-  opacity: 0;
-  // animation: fadeIn 0.5s 3s linear forwards;
 }
 
 @keyframes pulse {
