@@ -260,7 +260,7 @@ function Home() {
           <div>
             <a
               href={
-                'https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-b13e3.appspot.com/o/CV_fazliddin.pdf?alt=media&token=83c8f638-a41f-4a70-99a6-0857e96f101f'
+                'https://firebasestorage.googleapis.com/v0/b/house-marketplace-app-b13e3.appspot.com/o/CV_fazliddin.pdf?alt=media&token=f10ddb09-d157-47eb-b47c-81038affa8ca'
               }
               className="btn-anime"
               download
